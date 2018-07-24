@@ -5,7 +5,7 @@ export const setFilter = filter => ({
     filter
 });
 
-export const filters = {SHOW_ALL: 'SHOW_ALL', SHOW_BY_RATE: 'SHOW_BY_RATE', SHOW_FOUND: 'SHOW_FOUND'};
+export const visibilityFilters = {SHOW_ALL: 'SHOW_ALL', SHOW_BY_RATE: 'SHOW_BY_RATE', SHOW_FOUND: 'SHOW_FOUND'};
 
 export const addRecipe = recipe => ({
     type: 'ADD_RECIPE',
