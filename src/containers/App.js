@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import ButtonControlsGroup from "./components/ButtonControlsGroup";
-import RecipesContainer from "./containers/RecipesContainer";
-import EmptyContainer from "./components/EmptyContainer";
-import ModalExampleDimmer from "./containers/RecipeModal";
+import React from "react";
+import ButtonControlsGroup from "../components/ButtonControlsGroup";
+import RecipesContainer from "./RecipesContainer";
+import EmptyContainer from "../components/EmptyContainer";
+import ModalExampleDimmer from "./RecipeModal";
 import {
   Container,
   Grid,
