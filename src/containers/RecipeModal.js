@@ -42,7 +42,7 @@ import {
   TextArea
 } from "semantic-ui-react";
 
-class ModalExampleDimmer extends Component {
+class EditModal extends Component {
   state = { open: false };
 
   show = dimmer => () => this.setState({ dimmer, open: true });
@@ -53,8 +53,7 @@ class ModalExampleDimmer extends Component {
 
     return (
       <div>
-        <Button onClick={this.show(true)}>Default</Button>
-
+        <Button positive size="huge" icon="plus" content="Add new recipe" onClick={this.show(true)}/>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Create a recipe</Modal.Header>
           <Modal.Content image>
@@ -93,4 +92,4 @@ class ModalExampleDimmer extends Component {
   }
 }
 
-export default ModalExampleDimmer;
+export default EditModal;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ButtonControlsGroup from "./components/ButtonControlsGroup";
 import RecipesContainer from "./containers/RecipesContainer";
 import EmptyContainer from "./components/EmptyContainer";
-import ModalExampleDimmer from "./containers/RecipeModal";
+import EditModal from "./containers/RecipeModal";
 import {
   Container,
   Grid,
@@ -17,7 +17,6 @@ class App extends React.Component {
   render() {
     return (
       <Container>
-        <ModalExampleDimmer />
         <Header as="h1" textAlign="center">
           <Image
             circular
@@ -29,12 +28,11 @@ class App extends React.Component {
           </Header.Subheader>
         </Header>
         <Grid>
+          
           <Grid.Row centered>{ButtonControlsGroup()}</Grid.Row>
           <Grid.Row centered>
-            <Button positive size="huge">
-              <Icon name="plus" />
-              Add new recipe
-            </Button>
+          <EditModal />
+            
           </Grid.Row>
           <Card.Group>{RecipesContainer()}</Card.Group>
           {EmptyContainer()}
