@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const config = require('cnfg')(__dirname, 'development');
+const config = require('../../config/');
 
 mongoose.Promise = global.Promise;
 

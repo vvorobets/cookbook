@@ -1,3 +1,3 @@
 module.exports = {
-	uri: 'mongodb://localhost/cookbook-academy'
+	uri: 'mongodb://localhost:27017/cookbook-academy'
 };
