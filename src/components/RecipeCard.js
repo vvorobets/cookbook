@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, Image, Icon } from "semantic-ui-react";
 import RatingOnRate from "../containers/Rating";
+import { Link } from 'react-router-dom';
 
 const RecipeCard = props => (
   <Card>
@@ -15,15 +16,9 @@ const RecipeCard = props => (
     </Card.Content>
     <Card.Content>
       <Button.Group floated="right">
-        <Button icon primary>
-          <Icon name="eye" />
-        </Button>
-        <Button icon color="green">
-          <Icon name="edit" />
-        </Button>
-        <Button icon negative>
-          <Icon name="trash" />
-        </Button>
+        <Button icon="eye" primary as={Link} to="/view"/>
+        <Button icon="edit" color="green" />
+        <Button icon="trash" negative />
       </Button.Group>
       <RatingOnRate />
     </Card.Content>

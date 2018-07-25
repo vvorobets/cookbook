@@ -1,19 +1,19 @@
 const manageRecipes = (state = [], action) => {
     switch(action.type) {
         case 'ADD_RECIPE':
-            return [...state, recipe]
+            return [...state, action.recipe]
         case 'EDIT_RECIPE':
             return state.map(item =>
                 (item.id === action.id)
-                ? recipe : item
+                ? action.recipe : item
             )
         case 'SET_RATE':
             return state.map(item =>
                 (item.id === action.id)
-                ? {...item, rate: rate} : item
+                ? {...item, rate: action.rate} : item
             )
         case 'DELETE_RECIPE':
-            return [...state].splice(id, 1)
+            return [...state].splice(action.id, 1)
         case 'VIEW_RECIPE':
         default:
             return state

@@ -7,10 +7,14 @@ import RecipeCard from "../components/RecipeCard";
 // }
 
 const RecipesContainer = () => (
-  <div>
+  <React.Fragment>
     {RecipeCard({ title: "Title1", desc: "Desc1" })}
     {RecipeCard({ title: "Title2", desc: "Desc2" })}
-  </div>
+    {RecipeCard({ title: "Title3", desc: "Desc3" })}
+    {RecipeCard({ title: "Title4", desc: "Desc4" })}
+    {RecipeCard({ title: "Title5", desc: "Desc5" })}
+    {RecipeCard({ title: "Title6", desc: "Desc6" })}
+  </React.Fragment>
 );
 
 export default RecipesContainer;

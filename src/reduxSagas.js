@@ -13,3 +13,7 @@ function* showAllRecipes() {
         })
     }
 }
+
+function* recipeSaga() {};
+
+export default recipeSaga;
