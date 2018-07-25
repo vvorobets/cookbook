@@ -13,6 +13,7 @@ import {
   Card
 } from "semantic-ui-react";
 
+
 class App extends React.Component {
   render() {
     return (
@@ -28,17 +29,13 @@ class App extends React.Component {
           </Header.Subheader>
         </Header>
         <Grid>
-          
           <Grid.Row centered>{ButtonControlsGroup()}</Grid.Row>
-          <Grid.Row centered>
-          <EditModal />
-            
-          </Grid.Row>
+          <Grid.Row centered><EditModal /></Grid.Row>
           <Card.Group>{RecipesContainer()}</Card.Group>
           {EmptyContainer()}
         </Grid>
       </Container>
-    );
+     );
   }
 }
 

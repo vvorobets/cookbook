@@ -2,9 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+import { BrowserRouter as Router, Route, IndexRoute, Redirect, Link } from 'react-router-dom';
+import EditModal from "./containers/RecipeModal";
 
 ReactDOM.render(
-  <App />,
+  
+
+  <Router>
+    <Route path="/" component={App}>
+      <Redirect to="recipes"/>
+      <Route path='/recipes' component={App}>
+        <Route path='/recipes/:id' component={EditModal} />
+      </Route>
+
+    </Route>
+  </Router>,
   document.getElementById('root')
 );
 // var app = require('express')();

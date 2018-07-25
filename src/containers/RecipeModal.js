@@ -32,6 +32,7 @@
 // }
 
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import {
   Button,
   Header,
@@ -39,56 +40,93 @@ import {
   Modal,
   Form,
   Input,
-  TextArea
+  TextArea, Icon
 } from "semantic-ui-react";
 
-class EditModal extends Component {
-  state = { open: false };
+// class EditModal extends Component {
+//   state = { open: false };
 
-  show = dimmer => () => this.setState({ dimmer, open: true });
-  close = () => this.setState({ open: false });
+//   show = () => this.setState({ open: true });
+//   close = () => this.setState({ open: false });
+
+//   render() {
+//     return (
+//       <div>
+//         <Button positive size="huge" icon="plus" content="Add new recipe" onClick={this.show}/>
+//         <Modal open={this.state.open} onClose={this.close}>
+//           <Modal.Header>Create a recipe</Modal.Header>
+//           <Modal.Content image>
+//             <Image
+//               rounded
+//               size="medium"
+//               src="https://www.seriouseats.com/images/2016/03/20150203-menu-yu-xian-sichuan-eggplant-fish-flavor-12-thumb-1500xauto-418828.jpg"
+//             />
+//             <Form>
+//               <Input label="Title:" placeholder="Some fancy name..."/>
+//               <TextArea
+//                 autoHeight
+//                 placeholder="Add something yummy and delicious..."
+//               />
+//             </Form>
+//           </Modal.Content>
+//       </div>
+//     );
+//   }
+// }
+
+class EditModal extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      description: '',
+      showModal: false
+    }
+  }
+
+  handleChangeForms = (e) => {this.setState({ [e.target.name]: e.target.value });
+  }
 
   render() {
-    const { open, dimmer } = this.state;
+    const { title, description, showModal } = this.state
 
     return (
-      <div>
-        <Button positive size="huge" icon="plus" content="Add new recipe" onClick={this.show(true)}/>
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>Create a recipe</Modal.Header>
-          <Modal.Content image>
-            <Image
-              rounded
-              size="medium"
-              src="https://www.seriouseats.com/images/2016/03/20150203-menu-yu-xian-sichuan-eggplant-fish-flavor-12-thumb-1500xauto-418828.jpg"
-            />
-            <Form>
-              <Input label="Title:" placeholder="Some fancy name..." />
-              <TextArea
-                autoHeight
-                placeholder="Add something yummy and delicious..."
-              />
-            </Form>
-          </Modal.Content>
-          <Modal.Actions>
+      <Modal closeIcon onClose={() => this.setState({ showModal: false })} open={showModal} trigger={
+        <Button positive size="huge" icon="plus" content="Add new recipe" onClick={() => this.setState({ showModal: true })}/>
+      }>
+        <Modal.Header>Create a recipe</Modal.Header>
+        <Modal.Content>
+          <Image rounded centered size="medium"
+            src="https://www.seriouseats.com/images/2016/03/20150203-menu-yu-xian-sichuan-eggplant-fish-flavor-12-thumb-1500xauto-418828.jpg"
+          />
+          <Form>
+            <Form.Input label="Title:" name="title" value={title} 
+              onChange={(e) => {this.setState({ [e.target.name]: e.target.value });}}
+              placeholder="Some fancy name..." />
+            <Form.TextArea label="Description:" autoHeight name="description" value={description} 
+              onChange={(e) => {this.setState({ [e.target.name]: e.target.value });}} 
+              placeholder="Add something yummy and delicious..." />
             <Button
               negative
               icon="cancel"
               labelPosition="left"
               content="Nope"
-              onClick={this.close}
+              onClick={(e) => {e.preventDefault(); this.setState({ showModal: false })}}
             />
             <Button
               positive
               icon="checkmark"
               labelPosition="left"
               content="Yep, add this!"
-              onClick={this.close}
+              onClick={(e) => {e.preventDefault(); this.setState({ showModal: false })}}
             />
-          </Modal.Actions>
-        </Modal>
-      </div>
-    );
+            {/* <Link to='/recipes'/> */}
+          </Form>
+        </Modal.Content>
+        {console.log("State ", this.state)}
+      </Modal>
+    )
   }
 }
 
