@@ -8,6 +8,7 @@ const ButtonControlsGroup = () => (
       <Icon fitted name="sort amount up" /> Sort by rate
     </Button>
     <Input icon="search" placeholder="Search..." />
+    <hr/>
   </Form.Group>
 );
 

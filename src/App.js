@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MainHeader from "./components/MainHeader";
 import ButtonControlsGroup from "./components/ButtonControlsGroup";
 import RecipesContainer from "./containers/RecipesContainer";
 import EmptyContainer from "./components/EmptyContainer";
@@ -14,26 +15,14 @@ import {
 } from "semantic-ui-react";
 
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <Container>
-        <Header as="h1" textAlign="center">
-          <Image
-            circular
-            src="https://www.seriouseats.com/images/2016/03/20150203-menu-yu-xian-sichuan-eggplant-fish-flavor-12-thumb-1500xauto-418828.jpg"
-          />
-          Cookbook Academy
-          <Header.Subheader>
-            Manage your favourite cook recipes.
-          </Header.Subheader>
-        </Header>
-        <Grid>
-          <Grid.Row centered>{ButtonControlsGroup()}</Grid.Row>
+        {MainHeader()}
           <Grid.Row centered><EditModal /></Grid.Row>
           <Card.Group>{RecipesContainer()}</Card.Group>
           {EmptyContainer()}
-        </Grid>
       </Container>
      );
   }
