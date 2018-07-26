@@ -5,16 +5,14 @@ const recipeService = require('./recipe.service');
 recipe.route('/')
 	.get((req, res) => {
 		recipeService.getAllRecipes()
-			.then(
-				console.log("Hello from server4!"),
-				res.render('index.html')
-			)
+			.then(recipes => {
+				res.send(recipes);
+			})
 			.catch(err => {
 				console.log(err);
 			});
-	});
-
-recipe.route('/').post((req, res) => {
+	})
+	.post((req, res) => {
 		recipeService.addRecipe(req.body)
 			.then(recipe => {
 				res.send(recipe);
