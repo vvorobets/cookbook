@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card, Image, Icon } from "semantic-ui-react";
-import RatingSetter from "../containers/Rating";
+import RatingSetter from "../components/Rating";
 import { Link } from 'react-router-dom';
 
 const RecipeCard = props => (

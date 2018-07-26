@@ -35,7 +35,7 @@ function* addRecipeAndUpdate() {
         const addedRecipe = yield SagaEffects.call(addRecipe);
 console.log('Added: ', addedRecipe);
         yield SagaEffects.put({
-            type: 'ADD_RECIPE_SUCCESS', allRecipes
+            type: 'ADD_RECIPE_SUCCESS', addedRecipe
         })
     } catch(error) {
         yield SagaEffects.put({

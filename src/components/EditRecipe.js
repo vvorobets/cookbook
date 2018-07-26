@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 
 import { Button, Image, Modal, Form } from "semantic-ui-react";
-import RatingSetter from "../containers/Rating";
+import RatingSetter from "../components/Rating";
 
-class EditModal extends Component {
+class EditRecipe extends Component {
 
   constructor(props) {
     super(props);
@@ -84,4 +84,4 @@ class EditModal extends Component {
   }
 }
 
-export default EditModal;
+export default EditRecipe;

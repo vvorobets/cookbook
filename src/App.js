@@ -1,24 +1,44 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
-import { Container, Grid, Card } from "semantic-ui-react";
 
 // components
-import MainHeader from "./components/MainHeader";
+import { Container, Header, Grid, Card, Form, Button, Icon, Input, Image } from "semantic-ui-react";
+import CreateRecipe from "./components/CreateRecipe";
+import EditRecipe from "./components/EditRecipe";
+import RecipeCard from "./components/RecipeCard";
+
 import RecipesContainer from "./containers/RecipesContainer";
-import EmptyContainer from "./components/EmptyContainer";
-import EditModal from "./containers/RecipeModal";
 
-const App = (props) => (
-    <React.Fragment>
-        {MainHeader()}
-        {props.fetchedRecipes.length > 0 ? (
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <Router>
             <React.Fragment>
-                <Link to={'/create'}><Grid.Row centered><EditModal /></Grid.Row><hr/></Link>
-                <Card.Group>{RecipesContainer()}</Card.Group>
+                <Header as="h1" textAlign="center"><hr/>
+                    <Image circular
+                        src="https://www.seriouseats.com/images/2016/03/20150203-menu-yu-xian-sichuan-eggplant-fish-flavor-12-thumb-1500xauto-418828.jpg"
+                    /> Cookbook Academy<br/>
+                    <Header.Subheader><br/>Manage your favourite cook recipes.<hr/></Header.Subheader>
+                </Header>
+                <Grid><Grid.Row centered>
+                    <Form.Group>
+                        <Link to={'/recipes'}><Button primary>Show All</Button></Link>
+                        <Button primary icon="sort amount up" content=" Sort by rate" />
+                        <Input icon="search" placeholder="Search..." /><hr/>
+                    </Form.Group>
+                </Grid.Row></Grid>
+                <Switch>
+                    <Route exact path='/create' component={CreateRecipe} />
+                    <Route path='/edit/:id' component={EditRecipe} />
+                    <Route exact path='/recipes' component={RecipesContainer} />
+                    <Route exact path='/' component={RecipesContainer} />
+                </Switch>
             </React.Fragment>
-        ) : (EmptyContainer())}
-    </React.Fragment>
-);
-
-export default App;
-
+            </Router>
+        )
+    }
+}
