@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { Button, Image, Modal, Form } from "semantic-ui-react";
+import RatingSetter from "../containers/Rating";
 
 class EditModal extends Component {
 
@@ -20,14 +21,19 @@ class EditModal extends Component {
     const { title, description, showModal } = this.state
 
     return (
-      <Modal closeIcon onClose={() => this.setState({ showModal: false })} open={showModal} trigger={
+      <Modal onClose={() => this.setState({ showModal: false })} open={showModal} trigger={
         <Button positive fluid size="huge" icon="plus" content="Add new recipe" onClick={() => this.setState({ showModal: true })}/>
-      }>
+      }
+      closeOnDimmerClick={false}
+      >
         <Modal.Header>Create a recipe</Modal.Header>
         <Modal.Content>
           <Image rounded centered size="medium"
             src="https://www.seriouseats.com/images/2016/03/20150203-menu-yu-xian-sichuan-eggplant-fish-flavor-12-thumb-1500xauto-418828.jpg"
           />
+          <p>Set rating:</p>
+          <RatingSetter />
+
           <Form>
             <Form.Input label="Title:" name="title" value={title} 
               onChange={(e) => {this.setState({ [e.target.name]: e.target.value });}}

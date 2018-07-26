@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Rating } from "semantic-ui-react";
 
-export default class RatingOnRate extends Component {
+export default class RatingSetter extends Component {
   state = {};
 
   handleRate = (e, { rating }) => this.setState({ rating });
