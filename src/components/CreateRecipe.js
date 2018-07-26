@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import { Grid, Header, Button, Image, Form } from "semantic-ui-react";
+import { Grid, Header, Button, Image, Form, Rating } from "semantic-ui-react";
 import RatingSetter from "../components/Rating";
 
 class CreateRecipe extends Component {
@@ -24,7 +24,7 @@ class CreateRecipe extends Component {
           src="https://www.seriouseats.com/images/2016/03/20150203-menu-yu-xian-sichuan-eggplant-fish-flavor-12-thumb-1500xauto-418828.jpg"
         />
         <p>Set rating:</p>
-        <RatingSetter />
+        <Rating icon="star" maxRating={5} onRate={(e, { rating }) => this.setState({ rating })} />
         <Form>
           <Form.Input 
             label="Title:" name="title" value={title} 

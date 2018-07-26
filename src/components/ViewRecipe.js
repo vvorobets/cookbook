@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import { Grid, Header, Image } from "semantic-ui-react";
-import RatingSetter from "../components/Rating";
+import { Grid, Header, Image, Rating } from "semantic-ui-react";
 
 class EditRecipe extends Component {
 
@@ -11,12 +10,12 @@ class EditRecipe extends Component {
     this.state = {
         title: props.title,
         description: props.description,
-        rate: props.rate
+        rating: props.rating
       }
   }
 
   render() {
-    const { title, description } = this.state
+    const { title, description, rating } = this.state
 
     return (
       <Grid.Row>
@@ -27,7 +26,7 @@ class EditRecipe extends Component {
         <Header as='h5' block textAlign="center" content="Description:" />
         <p>{this.state.description}</p>
         <p>Set rating:</p>
-        <RatingSetter />
+        <Rating icon="star" maxRating={5} onRate={(e, { rating }) => this.setState({ rating })} />
       </Grid.Row>
     )
   }

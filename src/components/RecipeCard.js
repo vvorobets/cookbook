@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Card, Image, Icon } from "semantic-ui-react";
-import RatingSetter from "../components/Rating";
+import { Button, Card, Image, Icon, Rating } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
 
 const RecipeCard = props => (
@@ -20,7 +19,7 @@ const RecipeCard = props => (
         <Button icon="edit" color="green" as={Link} to={'/edit/'+ 3} />
         <Button icon="trash" negative />
       </Button.Group>
-      <RatingSetter />
+      <Rating icon="star" maxRating={5} onRate={(e, { rating }) => this.setState({ rating })} />
     </Card.Content>
   </Card>
 );
