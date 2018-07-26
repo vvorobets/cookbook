@@ -18,7 +18,6 @@ class Repository {
 	}
 
 	findAll() {
-		console.log("Hello from server6!");
 		return this.findWhere({});
 	}
 
@@ -31,6 +30,7 @@ class Repository {
 	}
 
 	add(data) {
+console.log("Hello from Repository.add!");
 		return this.model.create(data);
 	}
 

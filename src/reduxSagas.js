@@ -9,7 +9,14 @@ console.log('Fetching recipes...');
       url: "http://localhost:9000/api/recipes"
     });
   }
-
+function addRecipe() {
+console.log('Adding recipe...');
+    return axios({
+        method: "post",
+        url: "http://localhost:9000/api/recipes"
+    });
+}
+    
 function* showAllRecipes() {
     try {
         const allRecipes = yield SagaEffects.call(fetchAllRecipes);
@@ -19,7 +26,20 @@ console.log('Fetched: ', allRecipes);
         })
     } catch(error) {
         yield SagaEffects.put({
-            type: 'FETCH_ALL_RECIPES_FAILED'
+            type: 'FETCH_ALL_RECIPES_FAILURE'
+        })
+    }
+}
+function* addRecipeAndUpdate() {
+    try {
+        const addedRecipe = yield SagaEffects.call(addRecipe);
+console.log('Added: ', addedRecipe);
+        yield SagaEffects.put({
+            type: 'ADD_RECIPE_SUCCESS', allRecipes
+        })
+    } catch(error) {
+        yield SagaEffects.put({
+            type: 'ADD_RECIPE_FAILURE'
         })
     }
 }
