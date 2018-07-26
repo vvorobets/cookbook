@@ -7,8 +7,8 @@ import RecipeCard from "../components/RecipeCard";
 const RecipesContainer = () => (
   <React.Fragment>{ /* this.props.fetchedRecipes.length */ 1 ? (
     <React.Fragment>
-        <Link to={'/create'}><Button positive fluid size="huge" icon="plus" content="Add new recipe" /></Link><hr/>
-        <Card.Group>
+        <Button positive fluid size="huge" icon="plus" content="Add new recipe" as={Link} to={'/create'} /><hr/>
+        <Card.Group itemsPerRow={2} centered>
           {RecipeCard({title: "Title1", description: "Description1"})}
           {RecipeCard({title: "Title2", description: "Description2"})}
           {RecipeCard({title: "Title3", description: "Description3"})}

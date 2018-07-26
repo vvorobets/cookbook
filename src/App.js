@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-ro
 import { Container, Header, Grid, Card, Form, Button, Icon, Input, Image } from "semantic-ui-react";
 import CreateRecipe from "./components/CreateRecipe";
 import EditRecipe from "./components/EditRecipe";
+import ViewRecipe from "./components/ViewRecipe";
 import RecipeCard from "./components/RecipeCard";
 
 import RecipesContainer from "./containers/RecipesContainer";
@@ -16,7 +17,7 @@ export default class App extends Component {
     }
     render() {
         return (
-            <Router>
+        <Router>
             <React.Fragment>
                 <Header as="h1" textAlign="center"><hr/>
                     <Image circular
@@ -34,11 +35,12 @@ export default class App extends Component {
                 <Switch>
                     <Route exact path='/create' component={CreateRecipe} />
                     <Route path='/edit/:id' component={EditRecipe} />
+                    <Route path='/view/:id' component={ViewRecipe} />
                     <Route exact path='/recipes' component={RecipesContainer} />
                     <Route exact path='/' component={RecipesContainer} />
-                </Switch>
+                 </Switch>
             </React.Fragment>
-            </Router>
+        </Router>
         )
     }
 }
