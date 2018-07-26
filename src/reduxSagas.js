@@ -5,7 +5,7 @@ import axios from "axios";
 function fetchAllRecipes() {
     return axios({
       method: "get",
-      url: "http://localhost:3000/recipes"
+      url: "http://localhost:9001/api/"
     });
   }
 

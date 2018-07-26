@@ -18,6 +18,7 @@ class Repository {
 	}
 
 	findAll() {
+		console.log("Hello from server6!");
 		return this.findWhere({});
 	}
 

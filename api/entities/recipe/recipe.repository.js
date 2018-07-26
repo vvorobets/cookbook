@@ -1,4 +1,4 @@
-const Repository = require('./../../common/Repository');
+const Repository = require('../../common/Repository');
 const RecipeModel = require('./recipe.schema');
 
 class RecipeRepository extends Repository {
