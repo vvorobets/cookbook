@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import { Grid, Header, Button, Image, Form, Rating } from "semantic-ui-react";
-import RatingSetter from "../components/Rating";
 
 class CreateRecipe extends Component {
 

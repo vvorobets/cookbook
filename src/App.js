@@ -11,7 +11,9 @@ import RecipeCard from "./components/RecipeCard";
 
 import RecipesContainer from "./containers/RecipesContainer";
 
-export default class App extends Component {
+import {fetchAllRecipes} from "./actions";
+
+class App extends Component {
     constructor(props) {
         super(props);
     }
@@ -28,7 +30,7 @@ export default class App extends Component {
                 <Grid><Grid.Row centered>
                     <Form.Group>
                         <Link to={'/recipes'}><Button primary>Show All</Button></Link>
-                        <Button primary icon="sort amount up" content=" Sort by rate" />
+                        <Button primary icon="sort amount up" content=" Sort by rate" onClick={fetchAllRecipes}/>
                         <Input icon="search" placeholder="Search..." /><hr/>
                     </Form.Group>
                 </Grid.Row></Grid>
@@ -44,3 +46,21 @@ export default class App extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        fetchRecipes: state.fetchRecipes,
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        fetchAllRecipes: () => dispatch({ type: "FETCH_ALL_RECIPES" })
+    };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App);
+  

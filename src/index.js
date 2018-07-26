@@ -12,6 +12,7 @@ import { recipeSaga } from './reduxSagas';
 
 import { Container } from "semantic-ui-react";
 
+import {fetchAllRecipes} from "./actions";
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
   rootReducer,
@@ -24,7 +25,11 @@ const action = type => store.dispatch({type});
 const reduxDevTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
-let fetchedRecipes = [];
+	let fetchedRecipes = [];
+// 	window.onload = () => fetchedRecipes = fetchAllRecipes();
+// console.log("fetched onload...", fetchedRecipes);
+	
+
 fetch('http://localhost:9000/api/recipes').then((result) => {
 	return result.json()
 }).then((result) => {

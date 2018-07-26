@@ -2,23 +2,12 @@ import * as SagaEffects from 'redux-saga/effects'
 // import app from './routes'
 import axios from "axios";
 
-function fetchAllRecipes() {
-console.log('Fetching recipes...');
-    return axios({
-      method: "get",
-      url: "http://localhost:9000/api/recipes"
-    });
-  }
-function addRecipe() {
-console.log('Adding recipe...');
-    return axios({
-        method: "post",
-        url: "http://localhost:9000/api/recipes"
-    });
-}
-    
+import {fetchAllRecipes} from "./actions";
+import {addRecipe} from "./actions";
+
 function* showAllRecipes() {
     try {
+        console.log("Hello from saga!");
         const allRecipes = yield SagaEffects.call(fetchAllRecipes);
 console.log('Fetched: ', allRecipes);
         yield SagaEffects.put({
@@ -46,6 +35,7 @@ console.log('Added: ', addedRecipe);
 
 export function* recipeSaga() {
     yield SagaEffects.all([
-        showAllRecipes
+        showAllRecipes,
+        SagaEffects.takeLatest('FETCH_ALL_RECIPES', SagaEffects.call(fetchAllRecipes))
     ])
   }

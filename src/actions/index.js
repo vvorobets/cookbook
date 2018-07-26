@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const FETCH_ALL_RECIPES = "FETCH_ALL_RECIPES";
 export const FETCH_ALL_RECIPES_SUCCESS = "FETCH_ALL_RECIPES_SUCCESS";
 export const FETCH_ALL_RECIPES_FAILURE = "FETCH_ALL_RECIPES_FAILURE";
@@ -21,6 +23,14 @@ export const SHOW_ALL = "SHOW_ALL";
 export const SHOW_BY_RATE = "SHOW_BY_RATE";
 export const SHOW_FOUND = "SHOW_FOUND";
 
+export const fetchAllRecipes = () => {
+console.log('Fetching recipes from actions');
+    return axios({
+        method: "get",
+        url: "http://localhost:9000/api/recipes"
+    });
+}
+      
 let currentRecipeId = 0;
 
 export const setFilter = filter => ({
