@@ -1,10 +1,10 @@
 const fetchRecipes = (state = [], action) => {
     switch(action.type) {
         case 'FETCH_ALL_RECIPES_SUCCESS':
-console.log('fetched recipes added to state! Note: concat arrays!')
-            return [...state, action.allRecipes]
+console.log('fetch_recipes_success! Note: concat arrays!')
+            return action.allRecipes;
         default:
-            return state
+            return state;
     }
 }
 

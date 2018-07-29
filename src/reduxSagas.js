@@ -5,11 +5,21 @@ import axios from "axios";
 import {fetchAllRecipes} from "./actions";
 import {addRecipe} from "./actions";
 
+export function* watchFetchingRequests() {
+    yield SagaEffects.takeEvery('FETCH_ALL_RECIPES', showAllRecipes);
+  }
+
 function* showAllRecipes() {
     try {
-        console.log("Hello from saga!");
-        const allRecipes = yield SagaEffects.call(fetchAllRecipes);
-console.log('Fetched: ', allRecipes);
+console.log("Hello from saga!");
+        const res = yield SagaEffects.call(() => {
+            return axios({
+                method: "get",
+                url: "http://localhost:9000/api/recipes"
+            });
+        });
+        const allRecipes = res.data;
+console.log('Fetched in saga: ', allRecipes);
         yield SagaEffects.put({
             type: 'FETCH_ALL_RECIPES_SUCCESS', allRecipes
         })
@@ -35,7 +45,6 @@ console.log('Added: ', addedRecipe);
 
 export function* recipeSaga() {
     yield SagaEffects.all([
-        showAllRecipes,
-        SagaEffects.takeLatest('FETCH_ALL_RECIPES', SagaEffects.call(fetchAllRecipes))
+        watchFetchingRequests(),
     ])
   }

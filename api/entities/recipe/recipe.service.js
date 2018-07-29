@@ -2,6 +2,7 @@ const recipeRepository = require('./recipe.repository');
 
 class RecipeService {
 	getAllRecipes() {
+console.log("Hello from get-repository!");
 		return recipeRepository.findAll();
 	}
 

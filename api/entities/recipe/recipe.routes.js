@@ -4,8 +4,10 @@ const recipeService = require('./recipe.service');
 
 recipe.route('/')
 	.get((req, res) => {
+console.log("Getting...");
 		recipeService.getAllRecipes()
 			.then(recipes => {
+console.log("Got: ", recipes);
 				res.send(recipes);
 			})
 			.catch(err => {

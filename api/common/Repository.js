@@ -4,6 +4,7 @@ const ObjectId = mongoose.Types.ObjectId;
 class Repository {
 
 	findWhere(props) {
+console.log("FindingWhere...", props);
 		const query = this.model.find(props);
 		return query.exec();
 	}
@@ -18,7 +19,10 @@ class Repository {
 	}
 
 	findAll() {
-		return this.findWhere({});
+		const found = this.findWhere({});
+		console.log("FoundWhere: ", found);	
+		return found;	
+		// return this.findWhere({});
 	}
 
 	findOneAndPopulate(props) {
