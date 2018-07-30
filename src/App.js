@@ -55,6 +55,7 @@ const mapStateToProps = (state, ownProps) => {
   
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
+        // onFetch: () => dispatch({ type: "FETCH_ALL_RECIPES" }),
         onShowAll: () => {dispatch({ type: "SHOW_ALL", data: ownProps.fetchRecipes })},
         onSort: () => dispatch({ type: "SHOW_BY_RATE", data: ownProps.fetchRecipes }),
         onSearch: () => dispatch({ type: "SHOW_FOUND", data: ownProps.fetchRecipes })

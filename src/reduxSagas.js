@@ -37,9 +37,24 @@ console.log('To add: ', addedRecipe);
     }
 }
 
+function* deleteRecipeAndUpdate(action) {
+        try {
+            const deletedRecipe = yield SagaEffects.call(() => {
+                return axios.get('http://localhost:9000/api/recipes/delete/'+ action.payload).then(console.log('Deleted'))
+                .catch(err => console.log(err));
+            });
+            yield SagaEffects.call(showAllRecipes);
+        } catch(error) {
+            yield SagaEffects.put({
+                type: 'DELETE_RECIPE_FAILURE'
+            })
+        }
+}
+   
 export function* recipeSaga() {
     yield SagaEffects.all([
         SagaEffects.takeLatest('FETCH_ALL_RECIPES', showAllRecipes),
-        SagaEffects.takeLatest('ADD_RECIPE', addRecipeAndUpdate)
+        SagaEffects.takeLatest('ADD_RECIPE', addRecipeAndUpdate),
+        SagaEffects.takeLatest('DELETE_RECIPE', deleteRecipeAndUpdate)
     ])
   }

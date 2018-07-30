@@ -7,7 +7,7 @@ import RecipeCard from "../components/RecipeCard";
 const RecipesContainer = (props) => {
     if(props) {
         const arrOfRecipes = props.map((item, i) => {
-            return <RecipeCard key={i} title={item.title} description={item.description} rate={item.rate} recipeId={item.id}/>
+            return <RecipeCard key={i} obj={item}/>
         });
         return (
             <React.Fragment>

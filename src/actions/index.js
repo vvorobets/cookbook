@@ -42,8 +42,7 @@ export const visibilityFilters = {SHOW_ALL: 'SHOW_ALL', SHOW_BY_RATE: 'SHOW_BY_R
 
 export const addRecipe = recipe => ({
     type: 'ADD_RECIPE',
-    id: currentRecipeId++,
-    recipe
+    payload: {id: currentRecipeId++, recipe}
 });
 
 export const viewRecipe = id => ({
@@ -58,7 +57,7 @@ export const editRecipe = (recipe, id) => ({
 
 export const deleteRecipe = id => ({
     type: 'DELETE_RECIPE',
-    id
+    payload: id
 });
 
 export const setRate = (rate, id) => ({

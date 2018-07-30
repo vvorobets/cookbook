@@ -53,6 +53,7 @@ RecipeRouter.route('/update/:id').post(function (req, res) {
 });
 
 RecipeRouter.route('/delete/:id').get(function (req, res) {
+console.log("Hello from delete-route!", req.params.id);
   Recipe.findByIdAndRemove({_id: req.params.id},
        function(err, recipe){
         if(err) res.json(err);

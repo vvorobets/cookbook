@@ -13,7 +13,7 @@ const manageRecipes = (state = [], action) => {
                 ? {...item, rate: action.rate} : item
             )
         case 'DELETE_RECIPE_SUCCESS':
-            return [...state].splice(action.id, 1)
+            return [...state].filter(action.id, 1)
         case 'VIEW_RECIPE_SUCCESS':
         default:
             return state
