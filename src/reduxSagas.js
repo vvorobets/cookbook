@@ -1,5 +1,4 @@
 import * as SagaEffects from 'redux-saga/effects'
-// import app from './routes'
 import axios from "axios";
 
 import {addRecipe} from "./actions";
@@ -23,13 +22,12 @@ function* showAllRecipes() {
     }
 }
 function* addRecipeAndUpdate(action) {
-console.log("Hello from update-saga!");
     try {
-        const addedRecipe = yield SagaEffects.call(addRecipe, action.recipe);
-console.log('To add: ', addedRecipe);
-        yield SagaEffects.put({
-            type: 'ADD_RECIPE_SUCCESS', addedRecipe
-        })
+        const addedRecipe = yield SagaEffects.call(() => {
+            return axios.post('http://localhost:9000/api/recipes/add', action.payload)
+            .then(res => console.log(res.data)).catch(err => console.log(err));
+        });
+        yield SagaEffects.call(showAllRecipes);
     } catch(error) {
         yield SagaEffects.put({
             type: 'ADD_RECIPE_FAILURE'

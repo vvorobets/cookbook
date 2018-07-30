@@ -31,7 +31,7 @@ console.log('Fetching recipes from actions');
     });
 }
       
-let currentRecipeId = 2;
+let currentRecipeId = 0;
 
 export const setFilter = filter => ({
     type: 'SET_FILTER',
@@ -42,7 +42,12 @@ export const visibilityFilters = {SHOW_ALL: 'SHOW_ALL', SHOW_BY_RATE: 'SHOW_BY_R
 
 export const addRecipe = recipe => ({
     type: 'ADD_RECIPE',
-    payload: {id: currentRecipeId++, recipe}
+    payload: {
+        id: currentRecipeId++,
+        title: recipe.title,
+        description: recipe.description,
+        rating: recipe.rating
+    }
 });
 
 export const viewRecipe = id => ({

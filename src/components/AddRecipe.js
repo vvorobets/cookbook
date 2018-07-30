@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import axios from "axios";
+
+import {addRecipe} from "../actions";
 
 import { Grid, Header, Button, Image, Form, Rating } from "semantic-ui-react";
 
@@ -28,17 +29,12 @@ class AddRecipe extends Component {
       description: this.state.description,
       rating: this.state.rating
     };
-    this.props.onAddRecipe;
+    this.props.onAddRecipe(updatedRecipe);
     this.setState({
       title: '',
       description: '',
       rating: 0
     });
-// console.log("New to post: ", this.state, updatedRecipe);
-//     axios.post('http://localhost:9000/recipes/', updatedRecipe)
-//     .then(res => {
-//       console.log(res.data);
-//     })
   };
 
   render() {
@@ -70,10 +66,16 @@ class AddRecipe extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+      state: state
+  };
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-      onAddRecipe: () => dispatch({ type: "ADD_RECIPE", recipe: this.state }),
-      onSetRate: () => dispatch({ type: "SET_RATE"})
+      onAddRecipe: (obj) => dispatch(addRecipe(obj)),
+      // onSetRate: () => dispatch({ type: "SET_RATE"})
   }
 };
 

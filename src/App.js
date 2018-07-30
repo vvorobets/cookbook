@@ -26,7 +26,7 @@ class App extends Component {
                 </Header>
                 <Grid><Grid.Row centered>
                     <Form.Group>
-                        <Link to={'/recipes'}><Button primary onClick={this.props.onShowAll} >Show All</Button></Link>
+                        <Link to={'/recipes'}><Button primary onClick={/*this.props.onShowAll*/this.props.onFetch} >Show All</Button></Link>
                         <Button primary icon="sort amount up" content=" Sort by rate" onClick={this.props.onSort}/>
                         <Input icon="search" placeholder="Search..." onChange={this.props.onSearch} /><hr/>
                     </Form.Group>
@@ -55,7 +55,7 @@ const mapStateToProps = (state, ownProps) => {
   
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        // onFetch: () => dispatch({ type: "FETCH_ALL_RECIPES" }),
+        onFetch: () => dispatch({ type: "FETCH_ALL_RECIPES" }),
         onShowAll: () => {dispatch({ type: "SHOW_ALL", data: ownProps.fetchRecipes })},
         onSort: () => dispatch({ type: "SHOW_BY_RATE", data: ownProps.fetchRecipes }),
         onSearch: () => dispatch({ type: "SHOW_FOUND", data: ownProps.fetchRecipes })

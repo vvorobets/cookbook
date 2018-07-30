@@ -44,7 +44,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
       onFetch: () => dispatch({ type: "FETCH_ALL_RECIPES" }),
-      onDelete: () => {console.log("Hello from del-dispatcher");console.log("ownProps", ownProps); dispatch(deleteRecipe(ownProps.obj._id))}
+      onDelete: () => dispatch(deleteRecipe(ownProps.obj._id))
   };
 };
 
