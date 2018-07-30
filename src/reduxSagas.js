@@ -2,16 +2,10 @@ import * as SagaEffects from 'redux-saga/effects'
 // import app from './routes'
 import axios from "axios";
 
-import {fetchAllRecipes} from "./actions";
 import {addRecipe} from "./actions";
-
-export function* watchFetchingRequests() {
-    yield SagaEffects.takeEvery('FETCH_ALL_RECIPES', showAllRecipes);
-  }
 
 function* showAllRecipes() {
     try {
-console.log("Hello from saga!");
         const res = yield SagaEffects.call(() => {
             return axios({
                 method: "get",
@@ -19,7 +13,6 @@ console.log("Hello from saga!");
             });
         });
         const allRecipes = res.data;
-console.log('Fetched in saga: ', allRecipes);
         yield SagaEffects.put({
             type: 'FETCH_ALL_RECIPES_SUCCESS', allRecipes
         })
@@ -29,10 +22,11 @@ console.log('Fetched in saga: ', allRecipes);
         })
     }
 }
-function* addRecipeAndUpdate() {
+function* addRecipeAndUpdate(action) {
+console.log("Hello from update-saga!");
     try {
-        const addedRecipe = yield SagaEffects.call(addRecipe);
-console.log('Added: ', addedRecipe);
+        const addedRecipe = yield SagaEffects.call(addRecipe, action.recipe);
+console.log('To add: ', addedRecipe);
         yield SagaEffects.put({
             type: 'ADD_RECIPE_SUCCESS', addedRecipe
         })
@@ -45,6 +39,7 @@ console.log('Added: ', addedRecipe);
 
 export function* recipeSaga() {
     yield SagaEffects.all([
-        watchFetchingRequests(),
+        SagaEffects.takeLatest('FETCH_ALL_RECIPES', showAllRecipes),
+        SagaEffects.takeLatest('ADD_RECIPE', addRecipeAndUpdate)
     ])
   }

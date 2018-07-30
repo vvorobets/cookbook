@@ -4,14 +4,7 @@ import { Header, Grid, Card, Button, Image } from "semantic-ui-react";
 
 import RecipeCard from "../components/RecipeCard";
 
-// function renderCards(arr) {
-//     arr.map((item, i) => {
-//         return(<RecipeCard key={i} title={item.title} description={item.description} rate={item.rate} recipeId={item.id}/>);
-//     })
-// };
-
 const RecipesContainer = (props) => {
-    console.log("Hello from RC!", props);
     if(props) {
         const arrOfRecipes = props.map((item, i) => {
             return <RecipeCard key={i} title={item.title} description={item.description} rate={item.rate} recipeId={item.id}/>

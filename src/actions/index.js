@@ -31,7 +31,7 @@ console.log('Fetching recipes from actions');
     });
 }
       
-let currentRecipeId = 0;
+let currentRecipeId = 2;
 
 export const setFilter = filter => ({
     type: 'SET_FILTER',

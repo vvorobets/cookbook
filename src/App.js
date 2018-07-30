@@ -4,20 +4,17 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-ro
 
 // components
 import { Header, Grid, Form, Button, Input, Image } from "semantic-ui-react";
-import CreateRecipe from "./components/CreateRecipe";
+import AddRecipe from "./components/AddRecipe";
 import EditRecipe from "./components/EditRecipe";
 import ViewRecipe from "./components/ViewRecipe";
-// import RecipeCard from "./components/RecipeCard";
-
 import RecipesContainer from "./containers/RecipesContainer";
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-console.log("App props: ", props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
+
     render() {
-console.log("Rendering App...", this.props);
         return (
         <Router>
             <React.Fragment>
@@ -29,18 +26,18 @@ console.log("Rendering App...", this.props);
                 </Header>
                 <Grid><Grid.Row centered>
                     <Form.Group>
-                        <Link to={'/recipes'}><Button primary>Show All</Button></Link>
-                        <Button primary icon="sort amount up" content=" Sort by rate" onClick={this.props.onFetch}/>
-                        <Input icon="search" placeholder="Search..." /><hr/>
+                        <Link to={'/recipes'}><Button primary onClick={this.props.onShowAll} >Show All</Button></Link>
+                        <Button primary icon="sort amount up" content=" Sort by rate" onClick={this.props.onSort}/>
+                        <Input icon="search" placeholder="Search..." onChange={this.props.onSearch} /><hr/>
                     </Form.Group>
                 </Grid.Row></Grid>
                 <Switch>
-                    <Route exact path='/add' component={CreateRecipe} />
+                    <Route exact path='/add' component={AddRecipe} />
                     <Route path='/edit/:id' component={EditRecipe} />
                     <Route path='/view/:id' component={ViewRecipe} />
                     <Route exact path='/recipes' render={() => RecipesContainer(this.props.fetchRecipes)}/>
-                    {/* <Route exact path='/recipes' render={(props) => <Dashboard {...props} isAuthed={true} />}component={RecipesContainer} recipes={this.props.fetchRecipes}/> */}
-                    <Route path='/' component={RecipesContainer} />
+                    {/* <Route exact path='/recipes' render={(props) => <RecipesContainer {...props} someProp={true} />}/> */}
+                    <Route path='/' render={() => RecipesContainer(this.props.fetchRecipes)} />
                  </Switch>
             </React.Fragment>
         </Router>
@@ -48,17 +45,21 @@ console.log("Rendering App...", this.props);
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
         fetchRecipes: state.fetchRecipes,
+        visibilityFilter: state.visibilityFilter,
+        isFetching: state.isFetching
     };
   };
   
-  const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        fetchAllRecipes: () => dispatch({ type: "FETCH_ALL_RECIPES" })
-    };
-  };
+        onShowAll: () => {dispatch({ type: "SHOW_ALL", data: ownProps.fetchRecipes })},
+        onSort: () => dispatch({ type: "SHOW_BY_RATE", data: ownProps.fetchRecipes }),
+        onSearch: () => dispatch({ type: "SHOW_FOUND", data: ownProps.fetchRecipes })
+    }
+};
   
   export default connect(
     mapStateToProps,

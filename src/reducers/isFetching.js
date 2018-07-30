@@ -1,4 +1,4 @@
-const setFetching = (state = false, action) => {
+const isFetching = (state = false, action) => {
     switch(action.type) {
         case 'FETCH_ALL_RECIPES':
         case 'ADD_RECIPE':
@@ -24,4 +24,4 @@ const setFetching = (state = false, action) => {
     }
 }
 
-export default setFetching
+export default isFetching

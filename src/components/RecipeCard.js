@@ -1,5 +1,7 @@
 import React from "react";
-import { Button, Card, Image, Icon, Rating } from "semantic-ui-react";
+import { connect } from "react-redux";
+
+import { Button, Card, Image, Rating } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
 
 class RecipeCard extends React.Component {
@@ -20,9 +22,9 @@ class RecipeCard extends React.Component {
         </Card.Content>
         <Card.Content>
           <Button.Group floated="right">
-            <Button icon="eye" primary as={Link} to={"/view/"+3 } />
-            <Button icon="edit" color="green" as={Link} to={'/edit/'+ 3} />
-            <Button icon="trash" negative />
+            <Button icon="eye" primary as={Link} to={"/view/" + this.props.recipeId} />
+            <Button icon="edit" color="green" as={Link} to={'/edit/' + this.props.recipeId} />
+            <Button icon="trash" negative onClick={this.props.onFetch}/>
           </Button.Group>
           <Rating icon="star" maxRating={5} onRate={(e, { rating }) => this.setState({ rating })} />
         </Card.Content>
@@ -31,4 +33,21 @@ class RecipeCard extends React.Component {
   }
 };
 
-export default RecipeCard;
+const mapStateToProps = state => {
+  return {
+      fetchRecipes: state.fetchRecipes,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+      onFetch: () => dispatch({ type: "FETCH_ALL_RECIPES" })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RecipeCard);
+
+// export default RecipeCard;

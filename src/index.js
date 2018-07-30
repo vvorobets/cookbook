@@ -25,12 +25,11 @@ const reduxDevTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 function render() {
-console.log("Rendering...");
 	ReactDOM.render(
 		<BrowserRouter>
-		    <Provider store={store}>
+		    <Provider store={store} action={action}>
 				<Container>
-					<App onFetch={() => action("FETCH_ALL_RECIPES")}/>
+					<App />
 				</Container>
 			</Provider>
 		</BrowserRouter>,
